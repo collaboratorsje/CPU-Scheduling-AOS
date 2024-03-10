@@ -60,11 +60,12 @@ table = PrettyTable()
 table.field_names = ["Algorithm", "Avg Waiting Time", "Avg Turnaround Time"]
 
 # Add rows of data
-table.add_row(["FCFS", avg_waiting_time_fcfs, avg_turnaround_time_fcfs])
-table.add_row(["Round Robin", avg_waiting_time_rr, avg_turnaround_time_rr])
-table.add_row(["SJF", avg_waiting_time_sjf, avg_turnaround_time_sjf])
-table.add_row(["LJF", avg_waiting_time_ljf, avg_turnaround_time_ljf])
-table.add_row(["Priority Scheduling", avg_waiting_time_priority, avg_turnaround_time_priority])
+# Add rows of data with values rounded to 3 decimal places
+table.add_row(["FCFS", round(avg_waiting_time_fcfs, 3), round(avg_turnaround_time_fcfs, 3)])
+table.add_row(["Round Robin", round(avg_waiting_time_rr, 3), round(avg_turnaround_time_rr, 3)])
+table.add_row(["SJF", round(avg_waiting_time_sjf, 3), round(avg_turnaround_time_sjf, 3)])
+table.add_row(["LJF", round(avg_waiting_time_ljf, 3), round(avg_turnaround_time_ljf, 3)])
+table.add_row(["Priority Scheduling", round(avg_waiting_time_priority, 3), round(avg_turnaround_time_priority, 3)])
 
 # Print the table
 print(table)
@@ -73,11 +74,25 @@ print(table)
 # Algorithm names
 algorithms = ["FCFS", "Round Robin", "SJF", "LJF", "Priority Scheduling"]
 
-# Average waiting times
-avg_waiting_times = [avg_waiting_time_fcfs, avg_waiting_time_rr, avg_waiting_time_sjf, avg_waiting_time_ljf, avg_waiting_time_priority]
+# Formatting the average waiting times and turnaround times to include only 3 decimal places
+# Average waiting times adjusted to include only 3 decimal places while preserving data type
+avg_waiting_times = [
+    round(avg_waiting_time_fcfs, 3),
+    round(avg_waiting_time_rr, 3),
+    round(avg_waiting_time_sjf, 3),
+    round(avg_waiting_time_ljf, 3),
+    round(avg_waiting_time_priority, 3)
+]
 
-# Average turnaround times
-avg_turnaround_times = [avg_turnaround_time_fcfs, avg_turnaround_time_rr, avg_turnaround_time_sjf, avg_turnaround_time_ljf, avg_turnaround_time_priority]
+# Average turnaround times adjusted to include only 3 decimal places while preserving data type
+avg_turnaround_times = [
+    round(avg_turnaround_time_fcfs, 3),
+    round(avg_turnaround_time_rr, 3),
+    round(avg_turnaround_time_sjf, 3),
+    round(avg_turnaround_time_ljf, 3),
+    round(avg_turnaround_time_priority, 3)
+]
+
 
 # Create a bar plot for average waiting times
 plt.figure(figsize=(10, 6))
