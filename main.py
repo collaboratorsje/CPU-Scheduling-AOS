@@ -1,8 +1,9 @@
-from algorithms import fcfs, round_robin, sjf, ljf, priority_scheduling
+from algorithms import fcfs, round_robin, sjf, ljf, priority_scheduling, fcfs_t, round_robin_t, sjf_t, ljf_t, priority_scheduling_t
 from process import Process
 from process_transient import Process_Transient
 from prettytable import PrettyTable
 import matplotlib.pyplot as plt
+import copy
 
 processes = [
     Process(1, 0, 1, 7),
@@ -42,19 +43,40 @@ TE = Process_Transient(21, 20, 10, 15) #transient event
 time_slice = 2
 
 # FCFS
-avg_waiting_time_fcfs, avg_turnaround_time_fcfs = fcfs(processes.copy())
+avg_waiting_time_fcfs, avg_turnaround_time_fcfs = fcfs(copy.deepcopy(processes))
 
 # Round Robin
-avg_waiting_time_rr, avg_turnaround_time_rr = round_robin(processes.copy(), time_slice)
+avg_waiting_time_rr, avg_turnaround_time_rr = round_robin(copy.deepcopy(processes), time_slice)
 
 # SJF
-avg_waiting_time_sjf, avg_turnaround_time_sjf = sjf(processes.copy())
+avg_waiting_time_sjf, avg_turnaround_time_sjf = sjf(copy.deepcopy(processes))
 
 # LJF
-avg_waiting_time_ljf, avg_turnaround_time_ljf = ljf(processes.copy())
+avg_waiting_time_ljf, avg_turnaround_time_ljf = ljf(copy.deepcopy(processes))
 
 # Priority Scheduling
-avg_waiting_time_priority, avg_turnaround_time_priority = priority_scheduling(processes.copy())
+avg_waiting_time_priority, avg_turnaround_time_priority = priority_scheduling(copy.deepcopy(processes))
+
+##########
+
+### Transient Event Functions ### Comment out Lines 60-75 to see results without TE ###
+# FCFS w/ Transient Event
+avg_waiting_time_fcfs, avg_turnaround_time_fcfs = fcfs_t(copy.deepcopy(processes), TE)
+
+# Round Robin w/ Transient Event
+avg_waiting_time_rr, avg_turnaround_time_rr = round_robin_t(copy.deepcopy(processes), time_slice, TE)
+
+# SJF w/ Transient Event
+avg_waiting_time_sjf, avg_turnaround_time_sjf = sjf_t(copy.deepcopy(processes), TE)
+
+# LJF w/ Transient Event
+avg_waiting_time_ljf, avg_turnaround_time_ljf = ljf_t(copy.deepcopy(processes), TE)
+
+# Priority Scheduling w/ Transient Event
+avg_waiting_time_priority, avg_turnaround_time_priority = priority_scheduling_t(copy.deepcopy(processes), TE)
+### End Comment Here for results that don't include the Transient Event ###
+
+##########
 
 # Create a new PrettyTable instance
 table = PrettyTable()
