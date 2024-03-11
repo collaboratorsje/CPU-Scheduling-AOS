@@ -1,5 +1,6 @@
 from algorithms import fcfs, round_robin, sjf, ljf, priority_scheduling
 from process import Process
+from process_transient import Process_Transient
 from prettytable import PrettyTable
 import matplotlib.pyplot as plt
 
@@ -24,7 +25,7 @@ processes = [
     Process(18, 17, 6, 3),
     Process(19, 18, 7, 2),
     Process(20, 19, 5, 7),
-    Process(21, 20, 10, 15), #transient event
+    Process(21, 20, 10, 3),
     Process(22, 21, 3, 10),
     Process(23, 22, 5, 1),
     Process(24, 23, 7, 8),
@@ -35,6 +36,8 @@ processes = [
     Process(29, 28, 9, 2),
     Process(30, 29, 6, 7),
 ]
+
+TE = Process_Transient(21, 20, 10, 15) #transient event
 
 time_slice = 2
 
@@ -59,7 +62,6 @@ table = PrettyTable()
 # Define table headers
 table.field_names = ["Algorithm", "Avg Waiting Time", "Avg Turnaround Time"]
 
-# Add rows of data
 # Add rows of data with values rounded to 3 decimal places
 table.add_row(["FCFS", round(avg_waiting_time_fcfs, 3), round(avg_turnaround_time_fcfs, 3)])
 table.add_row(["Round Robin", round(avg_waiting_time_rr, 3), round(avg_turnaround_time_rr, 3)])
